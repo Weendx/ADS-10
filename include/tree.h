@@ -14,11 +14,11 @@ class Tree {
     Node* root;
     Node* createNode(char element, std::vector<char> elements);
     void storePerms(Node* root, std::vector<char> permutation);
-    
+
     int maxPerm;
     std::vector<std::vector<char>> perms;
  public:
-    Tree(std::vector<char> elements);
+    explicit Tree(std::vector<char> elements);
     std::vector<char> getPerm(int n) const;
 };
 
@@ -45,7 +45,7 @@ void Tree::storePerms(Node* root, std::vector<char> permutation) {
         permutation.push_back(root->data);
         for (Node* ch : root->childrens)
             storePerms(ch, permutation);
-    } 
+    }
     if (root->childrens.empty()) {
         perms.push_back(permutation);
         // permutation.clear();
@@ -62,7 +62,6 @@ Tree::Tree(std::vector<char> elements) {
             maxPerm *= i + 1;
         }
     }
-    
 }
 
 std::vector<char> Tree::getPerm(int n) const {
